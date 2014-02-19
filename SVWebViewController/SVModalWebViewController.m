@@ -35,7 +35,7 @@
 }
 
 - (id)initWithHTMLString:(NSString *)htmlString andBaseUrl:(NSURL *)baseUrl {
-    self.webViewController = [[SVWebViewController alloc] initWithHTMLString:string andBaseUrl:baseUrl];
+    self.webViewController = [[SVWebViewController alloc] initWithHTMLString:htmlString andBaseUrl:baseUrl];
     if (self = [super initWithRootViewController:self.webViewController]) {
         [self initializeDoneButton];
     }

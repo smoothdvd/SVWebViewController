@@ -67,7 +67,7 @@
     if (self = [super init])
     {
         self.baseUrl = baseUrl;
-        self.htmlString = string;
+        self.htmlString = htmlString;
     }
     return self;
 }
