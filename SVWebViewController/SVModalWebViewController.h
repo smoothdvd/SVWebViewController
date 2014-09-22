@@ -13,6 +13,7 @@
 - (instancetype)initWithAddress:(NSString*)urlString;
 - (instancetype)initWithURL:(NSURL *)URL;
 - (instancetype)initWithURLRequest:(NSURLRequest *)request;
+- (instancetype)initWithHTMLString:(NSString *)htmlString andBaseUrl:(NSURL *)baseUrl;
 
 @property (nonatomic, strong) UIColor *barsTintColor;
 

@@ -38,14 +38,15 @@
 - (instancetype)initWithURLRequest:(NSURLRequest *)request {
     self.webViewController = [[SVWebViewController alloc] initWithURLRequest:request];
     if (self = [super initWithRootViewController:self.webViewController]) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                    target:self.webViewController
-                                                                                    action:@selector(doneButtonTapped:)];
-        
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            self.webViewController.navigationItem.leftBarButtonItem = doneButton;
-        else
-            self.webViewController.navigationItem.rightBarButtonItem = doneButton;
+        [self initializeDoneButton];
+    }
+    return self;
+}
+
+- (instancetype)initWithHTMLString:(NSString *)htmlString andBaseUrl:(NSURL *)baseUrl {
+    self.webViewController = [[SVWebViewController alloc] initWithHTMLString:htmlString andBaseUrl:baseUrl];
+    if (self = [super initWithRootViewController:self.webViewController]) {
+        [self initializeDoneButton];
     }
     return self;
 }
