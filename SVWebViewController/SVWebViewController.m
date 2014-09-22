@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIBarButtonItem *actionBarButtonItem;
 
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) NSURLRequest *request;
 @property (nonatomic, strong) NSURL *baseUrl;
 @property (nonatomic, strong) NSString *htmlString;
 
@@ -51,9 +52,6 @@
     return self;
 }
 
-- (void)loadRequest:(NSURLRequest*)request {
-    [self.webView loadRequest:request];
-
 - (instancetype)initWithHTMLString:(NSString *)htmlString andBaseUrl:(NSURL *)baseUrl {
     if (self = [super init])
     {
@@ -63,8 +61,16 @@
     return self;
 }
 
+- (void)loadRequest:(NSURLRequest*)request {
+    [self.webView loadRequest:request];
+}
+
 - (void)loadURL:(NSURL *)pageURL {
     [self.webView loadRequest:[NSURLRequest requestWithURL:pageURL]];
+}
+
+- (void)loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL{
+    [self.webView loadHTMLString:string baseURL:baseURL];
 }
 
 #pragma mark - View lifecycle
@@ -72,7 +78,7 @@
 - (void)loadView {
     self.view = self.webView;
     if (self.htmlString)
-        [self loadHTMLString:self.htmlString andBaseUrl:self.baseUrl];
+        [self loadHTMLString:self.htmlString baseURL:self.baseUrl];
     else
         [self loadRequest:self.request];
 }
